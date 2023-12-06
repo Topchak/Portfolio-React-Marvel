@@ -1,0 +1,43 @@
+
+
+import PropTypes from 'prop-types';
+
+class Greeting extends Component {
+  render() {
+    return ( 
+      <h1>Привет, {this.props.name}</h1>        //   check props types
+    );
+  }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+
+-         -         -         -         -         -         -         -
+
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
+class ErrorBoundary extends Component {
+
+  state = {
+    error: false
+  }
+
+  componentDidCatch( error, errorInfo ) {             // create stub errors
+    this.setState({
+      error: true
+    })
+  }
+
+  render (){ 
+    if ( this.state.error ) {
+      return <ErrorMessage/>
+    }
+    return this.props.children
+  }
+}
+
+export default ErrorBoundary
+
+

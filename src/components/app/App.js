@@ -1,46 +1,48 @@
-import {Component} from "react";
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import AppHeader from "../appHeader/AppHeader";
-import RandomChar from "../randomChar/RandomChar";
-import CharList from "../charList/CharList";
-import CharInfo from "../charInfo/CharInfo";
-import ErrorBoundary from "../ErrorBoundary/ErrorBoudary";
+import Spinner from "../widgets/spiner/Spiner";
 
-import decoration from '../../resources/img/vision.png';
+const Page404 = lazy(() => import('../Pages/404'))
+const Main = lazy(() => import('../Pages/Main'))
+const Comics = lazy(() => import('../Pages/Comics'))
+const SingleCharacterLayout = lazy(() => import('../Pages/SingleCharacterLayout/SingleCharacterLayout'))
+const SingleComicLayout = lazy(() => import('../Pages/SingleComicLayout/SingleComicLayout'))
+const SinglePage = lazy(() => import('../Pages/SinglePage'))
 
 
+const App = () => {
 
-class App extends Component {
+  return (
+      <Router>
+        <div className="app">
+          <AppHeader/>
+          <main>
+            <Suspense fallback={<Spinner/>}>
+              <Switch>
+                <Route exact path="/">
+                  <Main/>
+                </Route>
+                <Route exact path ="/comics">
+                  <Comics/>  
+                </Route>
+                <Route exact path="/comics/:id">
+                  <SinglePage Component={SingleComicLayout} dataType='comic'/>
+                </Route>
+                <Route exact path="/characters/:id">
+                  <SinglePage Component={SingleCharacterLayout} dataType='character'/>
+                </Route>
+                <Route path='*'>
+                  <Page404/>
+                </Route>
+              </Switch>
+            </Suspense>
+          </main>
+        </div>
+      </Router>
+  )
 
-    state = {
-        selectedChar: null
-    }
-
-    onCharSelected = (id) => {
-        this.setState({selectedChar: id})
-    }
-    
-
-    render (){
-        return (
-            <div className="app">
-              <AppHeader/>
-              <main>
-                <ErrorBoundary>
-                  <RandomChar/>
-                </ErrorBoundary>
-                <div className="char__content">
-                  <ErrorBoundary>
-                    <CharList onCharSelected={this.onCharSelected}/>
-                  </ErrorBoundary>
-                  <ErrorBoundary>
-                    <CharInfo charId ={this.state.selectedChar}/>
-                  </ErrorBoundary>
-                </div>
-                <img className="bg-decoration" src={decoration} alt="vision"/>
-              </main>
-            </div>
-          )
-    }
 }
 
 export default App;

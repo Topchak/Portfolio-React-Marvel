@@ -1,0 +1,24 @@
+.single-comic{
+    display: flex;
+    gap: 1rem;
+    margin-top: 20px;
+    &__info{
+        margin: 20px;
+        padding-top: 20px;
+        width: 50%;
+        position: relative;
+    }
+    &__char-img{
+        width: 50%;
+    }
+    &__back{
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 22px;
+        font-weight: 900;
+        &:hover{
+            color: #9F0013
+        }
+    }
+}

@@ -7,13 +7,12 @@ npm srart
 
 
 ### Marvel site
+<!-- ![ilustration](https://github.com/Topchak/Potrfolio-ShopReact/raw/main/screen-1.jpg) -->
+![Main Page](https://github.com/Topchak/React-Marvel/publick/images/marvelMain.png)
 
-![Main Page](images/marvelMain.png)
-
-_Краткое описание проекта 1. Здесь я использовал ... и достиг таких-то результатов._
+Здесь я использовал :
 
 
-## Мои навыки
 
 - **Верстка:** HTML5, CSS3, SCSS, BEM
 - **JavaScript:** ES6+, AJAX, Axios, Rest API

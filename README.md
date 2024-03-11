@@ -9,6 +9,10 @@ npm srart
 ### Marvel site
 <!-- ![ilustration](https://github.com/Topchak/Potrfolio-ShopReact/raw/main/screen-1.jpg) -->
 ![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelMain.png)
+![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelMainloading.png)
+![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelCharackter.png)
+![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelComics.png)
+![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelComicsPage.png)
 
 Здесь я использовал :
 

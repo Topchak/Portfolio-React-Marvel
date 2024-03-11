@@ -1,12 +1,27 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef,useMemo} from 'react';
 import PropTypes from 'prop-types';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group';
 
-import useMarvelService from '../../services/MarvelService';
 import Spinner from '../widgets/spiner/Spiner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import useMarvelService from '../../services/MarvelService';
 
 import './charList.scss';
+
+const setContent = (process, Component, newItemLoading) =>{
+    switch (process) {
+        case 'waiting':
+            return <Spinner/>;
+        case 'loading':
+            return newItemLoading ? <Component/> :  <Spinner/>;
+        case 'confirmed':
+            return <Component/>;
+        case 'error':
+            return <ErrorMessage/>;
+        default:
+            throw new Error('Unexpected process state');
+    }
+}
 
 const CharList = (props) => {
 
@@ -15,16 +30,18 @@ const CharList = (props) => {
     const [offset, setOffset] = useState(190);
     const [charEnded, setCharEnded] = useState(false);
     
-    const {loading, error, getAllCharacters} = useMarvelService();
+    const {getAllCharacters, process, setProcess} = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
+        // eslint-disable-next-line
     }, [])
 
     const onRequest = (offset, initial) => {
         initial ? setnewItemLoading(false) : setnewItemLoading(true);
         getAllCharacters(offset)
             .then(onCharListLoaded)
+            .then(() => setProcess('confirmed'))
     }
 
     const onCharListLoaded = async(newCharList) => {
@@ -47,6 +64,7 @@ const CharList = (props) => {
     }
 
     function renderItems (arr){
+        console.log('render');
         const items =  arr.map((item, i) => {
 
             const { id, name, thumbnail }  = item;
@@ -82,23 +100,24 @@ const CharList = (props) => {
 
         return (
             <ul className="char__grid">
-                <TransitionGroup component={null}>
+                <>
                     {items}
-                </TransitionGroup>
+                </>
             </ul>
         )
     }
     
-    const items = renderItems(charList);
+    const elements = useMemo(() => {
+        return setContent(process, () => renderItems(charList), newItemLoading)
+        // eslint-disable-next-line
+    }, [process])
 
-    const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading && !newItemLoading ? <Spinner/> : null;
 
     return (
         <div className="char__list">
-            {errorMessage}
-            {spinner}
-            {items}
+
+            { elements}
+
             <button 
                 disabled={newItemLoading} 
                 style={{'display' : charEnded ? 'none' : 'block'}}

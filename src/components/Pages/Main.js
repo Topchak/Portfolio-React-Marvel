@@ -28,6 +28,7 @@ function Main() {
       />
       <title>Marvel information</title>
     </Helmet>
+
     <ErrorBoundary>
       <RandomChar/>
     </ErrorBoundary>

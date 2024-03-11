@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
+import GlobalSearch from './GlobalSearch/GlobalSearch';
 
 import './appHeader.scss';
 
@@ -10,6 +11,8 @@ const AppHeader = () => {
                     <span>Marvel</span> information portal
                 </Link>
             </h1>
+
+            <GlobalSearch />
             <nav className="app__menu">
                 <ul>
                     <li><NavLink exact activeStyle={{'color': '#9F0013'}} to='/'>Characters</NavLink></li>

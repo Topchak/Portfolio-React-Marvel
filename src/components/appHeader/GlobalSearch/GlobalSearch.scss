@@ -1,0 +1,77 @@
+@import '../../../style/variables';
+.app__global-search{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &-input-wrapper{
+    position: relative;
+  }
+  &-input-wrapper input {
+    outline: none;
+  }
+
+
+  &-list{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 10;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    overflow-y: hidden;
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  &-item li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  }
+  &-item img{
+    width: 25px;
+  }
+}
+
+// .app__global-search-input-wrapper{
+//   position: relative;
+// }
+.clear{
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  cursor: pointer;
+  &:hover{
+    color: #9F0013
+  }
+}
+
+.loading{
+  color: $grey;
+  font-size: 12px;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: opacity 0.5s infinite;
+  
+  @keyframes opacity {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+}

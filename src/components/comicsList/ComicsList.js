@@ -5,6 +5,22 @@ import useMarvelServices from '../../services/MarvelService'
 import Spinner from '../widgets/spiner/Spiner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
+const setContent = (process, Component, newItemLoading) =>{
+    switch (process) {
+        case 'waiting':
+            return <Spinner/>;
+        case 'loading':
+            return newItemLoading ? <Component/> :  <Spinner/>;
+        case 'confirmed':
+            return <Component/>;
+        case 'error':
+            return <ErrorMessage/>;
+        default:
+            throw new Error('Unexpected process state');
+    }
+}
+
+
 const ComicsList = () => {
 
     const [comicsList, setComicsList] = useState([])
@@ -14,14 +30,16 @@ const ComicsList = () => {
 
     useEffect(() => {
         onRequest(offset, true)
+        // eslint-disable-next-line
     }, [])
 
-    const {error, loading, getAllComics} = useMarvelServices();
+    const {getAllComics, process, setProcess} = useMarvelServices();
 
     const onRequest = (offset, initial) =>{
         initial ? setNewItemLoading(false) : setNewItemLoading(true)
         getAllComics(offset)
             .then(onComicsLoaded)
+            .then(() => setProcess('confirmed'))
     }
 
     
@@ -45,42 +63,49 @@ const ComicsList = () => {
         myRefs.current.forEach(item => item.classList.remove('selected'));
         myRefs.current[id].classList.add('selected');
     }
+    const renderItems = (arr) =>{
 
-    const element = comicsList.map((item, i) =>{
+        const element = arr.map((item, i) =>{
 
-        const {id, description, price, thumbnail, title} = item;
-
-        return(
-            <li 
-            className="comics__item" 
-            key={i} 
-            id={id}
-            onClick={() => focusOnItem(i)}
-            ref={el => myRefs.current[i] = el}
-        >
-            <Link to={`/comics/${item.id}`}>
-                <img src={thumbnail} alt="ultimate war" className="comics__item-img"/>
-                <div className='comics__item-text-wrapper'>            
-                    <div className="comics__item-name">{title}</div>
-                    <div className="comics__item-price">{price}</div>
-                </div>
-            </Link>
-        </li>
-        )
-
-    })
+            const {id, price, thumbnail, title} = item;
     
-    const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading && !newItemLoading ? <Spinner/> : null;
+            return(
+                <li 
+                className="comics__item" 
+                key={i} 
+                id={id}
+                onClick={() => focusOnItem(i)}
+                ref={el => myRefs.current[i] = el}
+            >
+                <Link to={`/comics/${item.id}`}>
+                    <img src={thumbnail} alt="ultimate war" className="comics__item-img"/>
+                    <div className='comics__item-text-wrapper'>            
+                        <div className="comics__item-name">{title}</div>
+                        <div className="comics__item-price">{price}</div>
+                    </div>
+                </Link>
+            </li>
+            )
+
+    
+        })
+
+        return ( 
+            <ul className='comics__grid'>
+                {element}
+            </ul>
+        )
+    }
+
+
+
 
 
     return (
         <div className="comics__list">
-            {errorMessage}
-            {spinner}
-            <ul className="comics__grid">
-                {element}
-            </ul>
+
+            {setContent(process, () => renderItems(comicsList), newItemLoading)}
+
             <button 
                 disabled={newItemLoading}
                 style={{'display' : comicsEnded ? 'none' : 'block'}}

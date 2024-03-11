@@ -6,12 +6,15 @@ npm srart
 
 
 
-### Marvel site
-<!-- ![ilustration](https://github.com/Topchak/Potrfolio-ShopReact/raw/main/screen-1.jpg) -->
+### Main page
 ![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelMain.png)
+### Main page loading
 ![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelMainloading.png)
+### Page each char
 ![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelCharackter.png)
+### Main page Comics
 ![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelComics.png)
+### Page each comics
 ![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelComicsPage.png)
 
 Здесь я использовал :
@@ -19,12 +22,12 @@ npm srart
 
 
 - **Верстка:** HTML5, CSS3, SCSS, BEM
-- **JavaScript:** ES6+, AJAX, Axios, Rest API
-- **Инструменты:** Webpack, Vite
-- **React:** Hooks, Context, Forms, React Routers (v5/v6)
-- **Управление состоянием:** Redux, Redux Toolkit, Redux Thunk
-- **Типизация:** TypeScript (базовый уровень)
+- **JavaScript:** ES6+, AJAX, async/await, Fetch API
+- **Инструменты:** Webpack 
+- **React:** Hooks, Forms, React Routers 
 - **Версионирование:** Git/GitHub
+- **Обработка ошибок:** Обработка ошибок при выполнении HTTP-запроса
+- **Модульная структура:** Экспорт хука useHttp в виде модуля
 
 ## Контакты
 

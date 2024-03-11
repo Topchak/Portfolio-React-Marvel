@@ -1,4 +1,4 @@
-import Spinner from '../components/widgets/spiners/Spiner';
+import Spinner from '../components/widgets/spiner/Spiner';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 import Skeleton from '../components/skeleton/Skeleton'
 

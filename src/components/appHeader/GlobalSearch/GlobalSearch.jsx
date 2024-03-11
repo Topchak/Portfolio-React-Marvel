@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useMarvelServices from "../../../services/MarvelService";
-import SpinnerSmall from "../../widgets/spiners/SpinnerSmall";
+import SpinnerSmall from "../../widgets/spiner/SpinnerSmall";
 
 import "./GlobalSearch.scss";
 
@@ -9,7 +9,6 @@ const GlobalSearch = () => {
   const { getCharacterByName2, setProcess, process } = useMarvelServices();
   const [inputValue, setInputValue] = useState("");
   const [heroesList, setHeroesList] = useState([]);
-  
 
   const onChange = async (e) => {
     const newValue = e.target.value;
@@ -21,7 +20,7 @@ const GlobalSearch = () => {
     } else {
       setProcess("loading");
       const characters = await getCharacterByName2(newValue);
-    
+
       setHeroesList(characters);
       setProcess("waiting");
     }
@@ -39,11 +38,11 @@ const GlobalSearch = () => {
       <div className="app__global-search-input-wrapper">
         <input
           type="text"
-          placeholder="Global search..."
+          placeholder="Global hero search..."
           onChange={onChange}
           value={inputValue}
         />
-        {process === "loading" ? <SpinnerSmall/> : null}
+        {process === "loading" ? <SpinnerSmall /> : null}
         {inputValue && (
           <div className="clear" onClick={clearInput}>
             ✘

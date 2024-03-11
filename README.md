@@ -8,7 +8,7 @@ npm srart
 
 ### Marvel site
 
-![Main Page](./images/marvelMain.png)
+![Main Page](images/marvelMain.png)
 
 _Краткое описание проекта 1. Здесь я использовал ... и достиг таких-то результатов._
 

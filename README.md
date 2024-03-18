@@ -7,15 +7,8 @@ npm srart
 
 
 ### Main page
-![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelMain.png)
-### Main page loading
-![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelMainloading.png)
-### Page each char
-![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelCharackter.png)
-### Main page Comics
-![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelComics.png)
-### Page each comics
-![Main Page](https://github.com/Topchak/React-Marvel/blob/main/public/images/marvelComicsPage.png)
+![Main Page](https://github.com/Topchak/Portfolio-React-Marvel/blob/main/show-marvel.gif)
+
 
 Здесь я использовал :
 
